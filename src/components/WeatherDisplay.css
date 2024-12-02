@@ -1,0 +1,117 @@
+
+.weather-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+
+.city-name {
+    text-align: center;
+    font-size: 2rem;
+    color: #2d2d2d;
+    margin-bottom: 10px;
+}
+
+
+.temperature, .condition {
+    text-align: center;
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: #555;
+}
+
+.forecast-title {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    text-align: center;
+    color: #2d2d2d;
+}
+
+.forecast-list {
+    list-style: none;
+    padding: 0;
+}
+
+.forecast-item {
+    background-color: #fff;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.forecast-item p {
+    margin: 5px 0;
+}
+
+
+.forecast-date {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #555;
+}
+
+.forecast-temp {
+    font-size: 1.2rem;
+    color: #2a9d8f;
+}
+
+.forecast-condition {
+    font-size: 1rem;
+    color: #f4a261;
+}
+
+
+@media (max-width: 768px) {
+    .weather-container {
+        padding: 15px;
+    }
+
+    .city-name {
+        font-size: 1.8rem;
+    }
+
+    .temperature, .condition {
+        font-size: 1rem;
+    }
+
+    .forecast-title {
+        font-size: 1.2rem;
+    }
+
+    .forecast-item {
+        padding: 12px;
+    }
+
+    .forecast-temp {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .weather-container {
+        padding: 10px;
+    }
+
+    .city-name {
+        font-size: 1.6rem;
+    }
+
+    .temperature, .condition {
+        font-size: 0.9rem;
+    }
+
+    .forecast-title {
+        font-size: 1rem;
+    }
+
+    .forecast-item {
+        padding: 10px;
+    }
+}
