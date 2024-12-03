@@ -5,6 +5,8 @@ import { getCurrentWeather, getWeatherForecast } from './services/weatherService
 import './App.css';
 import MapComponent from './components/MapComponent';
 import GeolocationMap from './components/GeoLocationMap';
+import InfiniteScrolling from './components/InfiniteScrolling';
+import Pagination from './components/Pagination';
 const App = () => {
     const [selectedCity, setSelectedCity] = useState(() => 
         localStorage.getItem('selectedCity') || 'Ho Chi Minh'
@@ -48,7 +50,9 @@ const App = () => {
             <WeatherDisplay weatherData={weatherData} />
             {/* {coord.lat && coord.lon && <MapComponent location={selectedCity} lat={coord.lat} lon={coord.lon}/>} */}
 
-            <GeolocationMap />
+            {/* <GeolocationMap /> */}
+            <InfiniteScrolling/>
+            {/* <Pagination/> */}
 
         </div>
     );

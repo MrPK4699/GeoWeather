@@ -30,7 +30,8 @@ const GeolocationMap = () => {
 
   console.log(location);
   return (
-    <div>
+    <div style={{width:'80%', margin:'auto'}}>
+      <p id="kuchBhi">User Location Map</p>
       <h1>User Location Map</h1>
       {error && <p style={{ color: "red" }}>{error}</p>}
       {location ? (
