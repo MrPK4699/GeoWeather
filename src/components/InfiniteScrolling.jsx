@@ -5,6 +5,10 @@ const InfiniteScrolling = () => {
       const [data, setData] = useState([]);
       console.log(data);
 
+      let scrollHeight = document.documentElement.scrollHeight;
+      let scrollTop = document.documentElement.scrollTop;
+      let clientHeight = document.documentElement.clientHeight;
+
       useEffect(() => {
             const fetchData = async () => {
               try {
