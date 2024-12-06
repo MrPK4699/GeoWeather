@@ -7,6 +7,7 @@ import MapComponent from './components/MapComponent';
 import GeolocationMap from './components/GeoLocationMap';
 import InfiniteScrolling from './components/InfiniteScrolling';
 import Pagination from './components/Pagination';
+import DynamicForcasting from './components/DynamicForcasting';
 const App = () => {
     const [selectedCity, setSelectedCity] = useState(() => 
         localStorage.getItem('selectedCity') || 'Ho Chi Minh'
@@ -50,8 +51,9 @@ const App = () => {
             <WeatherDisplay weatherData={weatherData} />
             {/* {coord.lat && coord.lon && <MapComponent location={selectedCity} lat={coord.lat} lon={coord.lon}/>} */}
 
+            <DynamicForcasting weatherData={weatherData}/>
             {/* <GeolocationMap /> */}
-            <InfiniteScrolling/>
+            {/* <InfiniteScrolling/> */}
             {/* <Pagination/> */}
 
         </div>
