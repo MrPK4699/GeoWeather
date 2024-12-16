@@ -62,7 +62,11 @@
     color: #2a9d8f;
 }
 
+.forecast-item div{
+    width: fit-content;
+}
 .forecast-condition {
+    text-align: center;
     font-size: 1rem;
     color: #f4a261;
 }

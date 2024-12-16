@@ -20,10 +20,12 @@ const WeatherDisplay = ({ weatherData }) => {
                     <li key={index} className="forecast-item">
                         <p className="forecast-date">{forecastItem.dt_txt}</p>
                         <p className="forecast-temp">Temperature: {(forecastItem.main.temp - 273.15).toFixed(2)}°C</p>
-                        <p className="forecast-condition">
+                        <div>
                             <img src={`https://openweathermap.org/img/wn/${forecastItem.weather[0].icon}@2x.png`} alt="Weather Icon" />
-                            {forecastItem.weather[0].description}
-                        </p>
+                            <p className="forecast-condition">
+                                {forecastItem.weather[0].description}
+                            </p>
+                        </div>
 
                     </li>
                 ))}
