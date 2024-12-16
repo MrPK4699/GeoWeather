@@ -5,7 +5,8 @@ const WeatherDisplay = ({ weatherData }) => {
     if (!weatherData) return <p>Loading...</p>;
     // console.log(weatherData);
 
-    const foreCast = [weatherData.forecast[0], weatherData.forecast[1], weatherData.forecast[2]];
+    // const foreCast = [weatherData.forecast[0], weatherData.forecast[1], weatherData.forecast[2]];
+    const foreCast = [...weatherData.forecast];
 
     return (
         <div className="weather-container">
@@ -19,7 +20,11 @@ const WeatherDisplay = ({ weatherData }) => {
                     <li key={index} className="forecast-item">
                         <p className="forecast-date">{forecastItem.dt_txt}</p>
                         <p className="forecast-temp">Temperature: {(forecastItem.main.temp - 273.15).toFixed(2)}°C</p>
-                        <p className="forecast-condition">{forecastItem.weather[0].description}</p>
+                        <p className="forecast-condition">
+                            <img src={`https://openweathermap.org/img/wn/${forecastItem.weather[0].icon}@2x.png`} alt="Weather Icon" />
+                            {forecastItem.weather[0].description}
+                        </p>
+
                     </li>
                 ))}
             </ul>
