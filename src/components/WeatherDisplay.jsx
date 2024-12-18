@@ -6,7 +6,7 @@ const WeatherDisplay = ({ weatherData }) => {
     // console.log(weatherData);
 
     // const foreCast = [weatherData.forecast[0], weatherData.forecast[1], weatherData.forecast[2]];
-    const foreCast = [...weatherData.forecast];
+    const foreCast = [...weatherData.forecast] || [...weatherData];
 
     return (
         <div className="weather-container">

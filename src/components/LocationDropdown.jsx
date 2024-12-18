@@ -7,7 +7,6 @@ const LocationDropdown = ({ selectedCity, setSelectedCity }) => (
     <div className="dropdown-container">
         <label htmlFor="city-dropdown" className="dropdown-label">Select City:</label>
         <select 
-            id="city-dropdown" 
             className="city-dropdown" 
             value={selectedCity} 
             onChange={(e) => setSelectedCity(e.target.value)}

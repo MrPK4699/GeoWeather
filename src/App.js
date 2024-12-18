@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import LocationDropdown from './components/LocationDropdown';
-import WeatherDisplay from './components/WeatherDisplay';
+
 import { getCurrentWeather, getWeatherForecast } from './services/weatherService';
 import './App.css';
 import MapComponent from './components/MapComponent';
@@ -26,7 +26,7 @@ const App = () => {
                 const res= await fetch( `https://nominatim.openstreetmap.org/search?q=${selectedCity}&format=json&limit=1` )
                 const ans= await res.json();
     
-                console.log(ans);
+                // console.log(ans);
                 setCoord((prev)=>({...prev, lat: ans[0].lat, lon:ans[0].lon}));
                 // await setCoord({lat: ans[0].lat, lon:ans[0].lon});
     
@@ -48,11 +48,10 @@ const App = () => {
         <div>
             <h1 style={{margin:'auto'}}>Weather Forecast</h1>
             <LocationDropdown selectedCity={selectedCity} setSelectedCity={setSelectedCity} />
-            <WeatherDisplay weatherData={weatherData} />
-            {/* {coord.lat && coord.lon && <MapComponent location={selectedCity} lat={coord.lat} lon={coord.lon}/>} */}
-
             <DynamicForcasting weatherData={weatherData}/>
-            {/* <GeolocationMap /> */}
+            {coord.lat && coord.lon && <MapComponent location={selectedCity} lat={coord.lat} lon={coord.lon}/>}
+
+            <GeolocationMap />
             {/* <InfiniteScrolling/> */}
             {/* <Pagination/> */}
 
