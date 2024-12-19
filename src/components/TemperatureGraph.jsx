@@ -17,11 +17,7 @@ const TemperatureGraph = ({ weatherData }) => {
       )
   }
   const labels = weatherData.forecast.map((data,i) => {
-      let time=data.dt_txt.slice(11, 16);
-      if(i==0 || time=='00:00'){
-            return data.dt_txt.slice(0, 16);
-      }
-      return time;
+      return data.dt_txt.slice(11, 16);
   }); // Extract datetime as labels
   const temperatures = weatherData.forecast.map((data) => data.main.temp - 273.15); // Convert Kelvin to Celsius
 
@@ -50,14 +46,14 @@ const TemperatureGraph = ({ weatherData }) => {
       },
       title: {
         display: true,
-        text: 'Temperature Forecast',
+        text: `Temperature Forecast of ${weatherData.forecast[0].dt_txt.slice(0,10)}`,
       },
     },
     scales: {
       x: {
         title: {
           display: true,
-          text: 'Date & Time',
+          text: 'Time',
         },
       },
       y: {

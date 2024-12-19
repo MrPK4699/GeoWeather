@@ -49,7 +49,9 @@ const DynamicForcasting = ({ weatherData }) => {
         />
     </div>
       {filteredData.forecast.length > 0 ? (
-        <WeatherDisplay weatherData={filteredData} />
+        <>
+          <WeatherDisplay weatherData={filteredData} />
+        </>
       ) : (
         <p>No weather data available for the selected date.</p>
       )}

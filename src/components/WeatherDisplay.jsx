@@ -1,5 +1,7 @@
 import React from 'react';
 import './WeatherDisplay.css'; 
+import TemperatureGraph from './TemperatureGraph';
+
 
 const WeatherDisplay = ({ weatherData }) => {
     if (!weatherData) return <p>Loading...</p>;
@@ -30,6 +32,8 @@ const WeatherDisplay = ({ weatherData }) => {
                     </li>
                 ))}
             </ul>
+          <TemperatureGraph weatherData={weatherData} />
+
         </div>
     );
 };
