@@ -11,8 +11,8 @@ const DynamicForcasting = ({ weatherData }) => {
   const [date, setDate] = useState(formattedDate);
   const [filteredData, setFilteredData] = useState( { forecast: [] });
 
-  console.log(weatherData)
-  console.log(filteredData)
+  // console.log(weatherData)
+  // console.log(filteredData)
   // Function to filter weather data based on selected date
   const handleChange = (selectedDate) => {
     const targetDate = selectedDate || formattedDate;
@@ -34,7 +34,7 @@ const DynamicForcasting = ({ weatherData }) => {
   }, [weatherData]); // Ensure this runs when weatherData changes
 
   return (
-    <div>
+    <div className='dyn4cast-container'>
       {/* <h1>Dynamic Forecasting</h1> */}
       <div className="dropdown-container">
         <label htmlFor='Select-date' className="dropdown-label">Select Date</label>
@@ -47,7 +47,7 @@ const DynamicForcasting = ({ weatherData }) => {
           }}
           value={date}
         />
-    </div>
+      </div>
       {filteredData.forecast.length > 0 ? (
         <>
           <WeatherDisplay weatherData={filteredData} />

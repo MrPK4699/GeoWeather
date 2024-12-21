@@ -3,7 +3,7 @@
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: rgba(249, 249, 249, 0.921);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     font-family: 'Arial', sans-serif;
@@ -39,9 +39,12 @@
 }
 
 .forecast-item {
-    background-color: #fff;
+    /* background-color: #fff; */
+    /* background-image: url('../assets//foggWindow.png');
+    background-size: cover; */
+    background-image: linear-gradient(to right,rgba(204, 229, 231, 0.3),rgba(178, 234, 234, 0.4));
     padding: 15px;
-    margin: 10px 0;
+    margin: 20px 0;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

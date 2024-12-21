@@ -15,7 +15,6 @@ const App = () => {
     const [weatherData, setWeatherData] = useState(null);
 
     const [coord, setCoord]= useState({lat:'', lon:''});
-    
 
     useEffect(() => {
         localStorage.setItem('selectedCity', selectedCity);
@@ -27,6 +26,8 @@ const App = () => {
                 const ans= await res.json();
     
                 // console.log(ans);
+                console.log('weatherResponse', weatherResponse);
+                console.log('forecastResponse', forecastResponse);
                 setCoord((prev)=>({...prev, lat: ans[0].lat, lon:ans[0].lon}));
                 // await setCoord({lat: ans[0].lat, lon:ans[0].lon});
     
@@ -45,7 +46,7 @@ const App = () => {
     }, [selectedCity]);
 
     return (
-        <div>
+        <div style={{height:'100vh' ,overflow: 'auto'}}>
             <h1 style={{margin:'auto'}}>Weather Forecast</h1>
             <LocationDropdown selectedCity={selectedCity} setSelectedCity={setSelectedCity} />
             <DynamicForcasting weatherData={weatherData}/>
