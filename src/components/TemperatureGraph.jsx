@@ -69,7 +69,7 @@ const TemperatureGraph = ({ weatherData }) => {
   };
 
   return (
-    <div>
+    <div style={{backgroundColor:'white', padding:'10px'}}>
       <h2>Temperature Graph</h2>
       <Line data={data} options={options} />
     </div>

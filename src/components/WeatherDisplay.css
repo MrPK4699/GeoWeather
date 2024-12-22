@@ -3,7 +3,7 @@
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
-    background-color: rgba(249, 249, 249, 0.921);
+    background-color: rgba(238, 235, 235, 0.23);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     font-family: 'Arial', sans-serif;
@@ -22,8 +22,9 @@
 .temperature, .condition {
     text-align: center;
     font-size: 1.2rem;
+    font-weight: 600;
     margin: 10px 0;
-    color: #555;
+    color: #676361;
 }
 
 .forecast-title {
@@ -42,7 +43,8 @@
     /* background-color: #fff; */
     /* background-image: url('../assets//foggWindow.png');
     background-size: cover; */
-    background-image: linear-gradient(to right,rgba(204, 229, 231, 0.3),rgba(178, 234, 234, 0.4));
+    /* background-image: linear-gradient(to right,rgba(204, 229, 231, 0.3),rgba(178, 234, 234, 0.4)); */
+    background-image: linear-gradient(to right,rgba(215, 228, 229, 0.507),rgba(4, 255, 255, 0.4));
     padding: 15px;
     margin: 20px 0;
     border-radius: 5px;
@@ -62,7 +64,7 @@
 
 .forecast-temp {
     font-size: 1.2rem;
-    color: #2a9d8f;
+    color: #117166;
 }
 
 .forecast-item div{
@@ -71,7 +73,8 @@
 .forecast-condition {
     text-align: center;
     font-size: 1rem;
-    color: #f4a261;
+    color: #f78223;
+    font-weight: 600;
 }
 
 

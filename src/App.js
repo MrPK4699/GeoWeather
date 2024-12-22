@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import LocationDropdown from './components/LocationDropdown';
 
 import { getCurrentWeather, getWeatherForecast } from './services/weatherService';
 import './App.css';
 import MapComponent from './components/MapComponent';
 import GeolocationMap from './components/GeoLocationMap';
-import InfiniteScrolling from './components/InfiniteScrolling';
-import Pagination from './components/Pagination';
+
 import DynamicForcasting from './components/DynamicForcasting';
+
+
 const App = () => {
     const [selectedCity, setSelectedCity] = useState(() => 
         localStorage.getItem('selectedCity') || 'Ho Chi Minh'
@@ -15,6 +16,9 @@ const App = () => {
     const [weatherData, setWeatherData] = useState(null);
 
     const [coord, setCoord]= useState({lat:'', lon:''});
+
+    const [myLocation, setMyLocation] =useState(false);
+    const geoLocationRef= useRef();
 
     useEffect(() => {
         localStorage.setItem('selectedCity', selectedCity);
@@ -45,16 +49,30 @@ const App = () => {
         fetchWeather();
     }, [selectedCity]);
 
+    const handleShowMyLocation = () => {
+        setMyLocation((prev) => !prev);
+
+        // Scroll to the Geolocation section if it's being shown
+        if (!myLocation) {
+            geoLocationRef.current?.scrollIntoView({ behavior:'smooth' });
+        }
+    };
+
+
     return (
-        <div style={{height:'100vh' ,overflow: 'auto'}}>
+        <div style={{height:'100vh' ,overflow: 'auto', marginBottom:'30px'}}>
             <h1 style={{margin:'auto'}}>Weather Forecast</h1>
             <LocationDropdown selectedCity={selectedCity} setSelectedCity={setSelectedCity} />
             <DynamicForcasting weatherData={weatherData}/>
             {coord.lat && coord.lon && <MapComponent location={selectedCity} lat={coord.lat} lon={coord.lon}/>}
 
-            {/* <GeolocationMap /> */}
-            {/* <InfiniteScrolling/> */}
-            {/* <Pagination/> */}
+            <button className='myLocation-btn' onClick={()=>handleShowMyLocation()}>{myLocation? 'Hide':'Show'} My Location</button>
+            <input type='checkbox' />
+            {myLocation && (
+                <div ref={geoLocationRef}>
+                    <GeolocationMap />
+                </div>
+            )}
 
         </div>
     );
