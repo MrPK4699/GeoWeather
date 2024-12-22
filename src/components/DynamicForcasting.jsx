@@ -12,7 +12,7 @@ const DynamicForcasting = ({ weatherData }) => {
   const [filteredData, setFilteredData] = useState( { forecast: [] });
 
   // console.log(weatherData)
-  // console.log(filteredData)
+  console.log(filteredData)
   // Function to filter weather data based on selected date
   const handleChange = (selectedDate) => {
     const targetDate = selectedDate || formattedDate;
