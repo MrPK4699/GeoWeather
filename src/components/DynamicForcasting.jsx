@@ -35,7 +35,6 @@ const DynamicForcasting = ({ weatherData }) => {
 
   return (
     <div className='dyn4cast-container'>
-      {/* <h1>Dynamic Forecasting</h1> */}
       <div className="dropdown-container">
         <label htmlFor='Select-date' className="dropdown-label">Select Date</label>
         <input

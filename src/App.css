@@ -4,8 +4,8 @@ body {
   background-image: url('./assets/srG.gif');
   background-size: cover; /* Ensures the image covers the entire background */
   background-repeat: no-repeat; /* Prevents the image from repeating */
-  background-position: center; /* Centers the image */
-  height: 100vh; /* Makes the background span the entire viewport height */
+  background-position: center;
+  height: 100vh;
   
 }
 
@@ -46,6 +46,7 @@ h2{
 .mapsComponenets{
   width:80%;
   margin:auto;
+  min-height: 40vh;
   /* display: flex;
   justify-content: space-around; */
 }

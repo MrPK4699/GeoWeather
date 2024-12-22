@@ -40,10 +40,6 @@
 }
 
 .forecast-item {
-    /* background-color: #fff; */
-    /* background-image: url('../assets//foggWindow.png');
-    background-size: cover; */
-    /* background-image: linear-gradient(to right,rgba(204, 229, 231, 0.3),rgba(178, 234, 234, 0.4)); */
     background-image: linear-gradient(to right,rgba(215, 228, 229, 0.507),rgba(4, 255, 255, 0.4));
     padding: 15px;
     margin: 20px 0;

@@ -16,7 +16,7 @@ const WeatherDisplay = ({ weatherData }) => {
             <p className="temperature">Temperature: {weatherData.temp}°C</p>
             <p className="condition">Condition: {weatherData.condition}</p>
             
-            <h3 className="forecast-title">Next 72-Hrs Forecast:</h3>
+            <h3 className="forecast-title">Next 5-Days Forecast:</h3>
             <ul className="forecast-list">
                 {foreCast.map((forecastItem, index) => (
                     <li key={index} className="forecast-item">

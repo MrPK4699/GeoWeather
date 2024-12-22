@@ -23,9 +23,9 @@ const App = () => {
                 const weatherResponse = await getCurrentWeather(selectedCity);
                 const forecastResponse = await getWeatherForecast(selectedCity);
                 const res = await fetch(`https://nominatim.openstreetmap.org/search?q=${selectedCity}&format=json&limit=1`);
-                const ans = await res.json();
+                const cityCoord = await res.json();
     
-                setCoord((prev) => ({ ...prev, lat: ans[0].lat, lon: ans[0].lon }));
+                setCoord((prev) => ({ ...prev, lat: cityCoord[0].lat, lon: cityCoord[0].lon }));
                 setWeatherData({
                     city: selectedCity,
                     temp: (weatherResponse.data.main.temp - 273.15).toFixed(2),
