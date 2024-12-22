@@ -14,11 +14,6 @@ import L from "leaflet";
 // Fix for default marker icons
 
 const MapComponent = ({ location, lat, lon }) => {
-  const mapStyle = {
-    height: "400px",
-    width: "80%",
-    margin: "20px auto",
-  };
 
   const MapUpdater = ({ lat, lon }) => {
     const map = useMap();
@@ -31,16 +26,19 @@ const MapComponent = ({ location, lat, lon }) => {
   };
 
   return (
-    <MapContainer center={[lat, lon]} zoom={10} style={mapStyle}>
-      <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      />
-      <Marker position={[lat, lon]}>
-        <Popup>{location}</Popup>
-      </Marker>
-      <MapUpdater lat={lat} lon={lon} />
-    </MapContainer>
+    <div style={{ width:'90%', margin:'auto'}}>
+      <h2>City Map</h2>
+      <MapContainer center={[lat, lon]} zoom={13} style={{ height:'400px', width:'100%'}}>
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        />
+        <Marker position={[lat, lon]}>
+          <Popup>{location}</Popup>
+        </Marker>
+        <MapUpdater lat={lat} lon={lon} />
+      </MapContainer>
+    </div>
   );
 };
 

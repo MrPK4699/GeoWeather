@@ -30,8 +30,8 @@ const GeolocationMap = () => {
 
   console.log(location);
   return (
-    <div style={{width:'80%', margin:'auto'}}>
-      <h1>User Location Map</h1>
+    <div style={{width:'90%', margin:'auto'}}>
+      <h2>User Location Map</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
       {location ? (
         <MapContainer center={[location.lat, location.lng]} zoom={13} style={{ height: "500px", width: "100%" }}>

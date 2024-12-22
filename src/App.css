@@ -23,12 +23,36 @@ h1 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+h2{
+  font-family: 'Arial', sans-serif; 
+  color: #2d2d2d; 
+  text-align: center; 
+  margin: 20px 0; 
+  padding: 10px; 
+  background-color: rgba(0, 0, 0, 0.4); 
+  color: white; 
+  border-radius: 8px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 .myLocation-btn{
   margin: 10px 80px ;
   padding: 10px 20px;
   background-color: darkturquoise;
   border: none;
   border-radius: 12px;
+}
+
+.mapsComponenets{
+  width:80%;
+  margin:auto;
+  /* display: flex;
+  justify-content: space-around; */
+}
+
+.mapsComponenets label{
+  color: white;
+  margin: 20px ;
 }
 
 @media (max-width: 768px) {
