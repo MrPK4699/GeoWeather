@@ -32,7 +32,7 @@ const App = () => {
                     condition: weatherResponse.data.weather[0].description,
                     forecast: forecastResponse.data.list
                 });
-                console.log('weatherResponse',weatherResponse.data)
+                // console.log('weatherResponse',weatherResponse.data)
                 // console.log('forecastResponse',forecastResponse.data)
                 
             } catch (error) {
