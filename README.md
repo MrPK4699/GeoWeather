@@ -1,36 +1,52 @@
-# Weather App
+# GeoWeather
 
-## Overview
+Live weather for any city: current conditions, the next 24 hours, a 5-day forecast with a temperature
+and rain chart, and a rain-radar map. The background animates to match the real weather (sun, stars,
+clouds, rain, thunder, snow or mist).
 
-The Weather App is a user-friendly application designed to provide you with up-to-date weather information at the tip of your fingers. Whether you’re planning your day or preparing for a trip, this app helps you stay on top of the weather.
+## Features
 
----
+- **City search** with autocomplete (any city worldwide), plus recent searches and popular cities
+- **Use my location** (GPS) with a clear message if permission is denied
+- **Current weather**: temperature, feels-like, today's high/low, humidity, wind and direction,
+  chance of rain, pressure, visibility, sunrise and sunset, all in the city's own local time
+- **Next 24 hours** in 3-hour steps and a **5-day forecast** with min–max range bars
+- **Temperature & rain chart** for the selected day (lightweight SVG, no chart library)
+- **Map** with live rain radar overlay
+- **°C / °F** toggle; city, unit and recent searches are remembered
+- Animated background per weather and time of day; respects "reduce motion"
+- Responsive from phones to wide screens; keyboard and screen-reader friendly
 
-## Key Features:
+## Tech
 
-1. City Selection: The app allows you to choose from a list of cities such as Ho Chi Minh, Singapore, Kuala Lumpur, Tokyo, and Athens.
-2. Current Weather: It gives you the latest temperature and weather conditions, including a description (e.g., clear sky, cloudy, etc.).
-3. 5-Day Forecast: You can easily see the weather forecast for the next 5 days with detailed temperature information.
-4. Responsive Design: The app adjusts to different screen sizes, ensuring a smooth experience on both desktop and mobile devices.
-5. Persistent City Selection: Your selected city will be remembered, so you don’t need to choose it again when you refresh the page.
+React 19 · Vite · Tailwind CSS 4 · TanStack Query (caching, request cancelling) · Leaflet ·
+OpenWeather API · Vitest + Testing Library
 
-## Future Enhancements
+## Setup
 
--✅ Make the forcasting of next 5 days.
--✅ Implement the Geoloction map of the selected city and the user as well.
--✅ Implement the temperature to time  Graph of the selected day.
-- Implement search cities functionality.
-- Enhance UI/UX for a modern chat experience.
+1. Get a free API key at <https://openweathermap.org/api>.
+2. Create a `.env` file in the project root:
 
----
+   ```
+   VITE_OWM_API_KEY=your_key_here
+   ```
 
-## How It Works:
-1. Select a City: Use the dropdown to select a city from the list.
-2. View Current Weather: The app will display the current weather for the selected city, including the temperature and condition (e.g., sunny, cloudy, rainy).
-3. See the Forecast: Below the current weather, you'll see the forecast for the next 3 days, including temperature and conditions for each day.
+   (The older `REACT_APP_API_KEY` name also works.) `.env` is git-ignored: never commit it.
 
-## Why Use This App?
-1. Easy Access: You can quickly check the weather for your city or any of the listed cities.
-2. Accurate and Reliable: The app pulls real-time data from the OpenWeather API, which ensures that you get the most up-to-date weather information available.
-3. Responsive Design: Whether you're using a phone, tablet, or computer, the app looks great and works well on all screen sizes.
-4. Saves Time: Instead of searching for weather information on multiple websites, the app brings it all together in one place.
+3. Install and run:
+
+   ```bash
+   npm install
+   npm run dev      # http://localhost:5173
+   npm test         # run the tests
+   npm run build    # production build in dist/
+   ```
+
+> **Note:** any key used in browser code can be read by visitors. For a public deployment, call the
+> OpenWeather API through a small server-side proxy (e.g. a Vercel/Netlify function) instead.
+
+## Credits
+
+Weather data and rain radar © [OpenWeather](https://openweathermap.org/) ·
+Map data © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors ·
+Icons: [Weather Icons](https://erikflowers.github.io/weather-icons/) and [Lucide](https://lucide.dev/) via react-icons
