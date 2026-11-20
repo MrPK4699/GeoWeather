@@ -5,8 +5,36 @@ body {
   background-size: cover; /* Ensures the image covers the entire background */
   background-repeat: no-repeat; /* Prevents the image from repeating */
   background-position: center;
-  height: 100vh;
-  
+  /* Fixed background + normal page scrolling (no second scrollbar inside the page) */
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+.app {
+  padding-bottom: 40px;
+}
+
+.status-message {
+  max-width: 400px;
+  margin: 10px auto;
+  padding: 12px 16px;
+  text-align: center;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+}
+
+.status-error {
+  background-color: rgba(180, 30, 30, 0.75);
+}
+
+.status-error p {
+  margin: 0 0 8px;
+}
+
+.status-error .myLocation-btn {
+  margin: 0;
+  cursor: pointer;
 }
 
 

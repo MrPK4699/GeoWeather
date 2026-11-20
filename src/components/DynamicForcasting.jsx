@@ -1,56 +1,40 @@
-import React, { useEffect, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import WeatherDisplay from './WeatherDisplay';
+import { groupByLocalDate } from '../utils/forecast';
 
-import './LocationDropdown.css'; 
-
+import './LocationDropdown.css';
 
 const DynamicForcasting = ({ weatherData }) => {
-  const currDt = new Date();
-  const formattedDate = currDt.toISOString().slice(0, 10);
-  
-  const [date, setDate] = useState(formattedDate);
-  const [filteredData, setFilteredData] = useState( { forecast: [] });
+  // Forecast grouped by the CITY's local date (not UTC, not the viewer's time zone).
+  const days = useMemo(
+    () => groupByLocalDate(weatherData?.forecast, weatherData?.timezone),
+    [weatherData]
+  );
+  const dates = Object.keys(days);
 
-  // console.log(weatherData)
-  // console.log(filteredData)
-  // Function to filter weather data based on selected date
-  const handleChange = (selectedDate) => {
-    const targetDate = selectedDate || formattedDate;
+  // Keep the user's chosen date while it exists in the data (e.g. after switching city);
+  // otherwise fall back to the first forecast day, i.e. the city's "today".
+  const [pickedDate, setPickedDate] = useState('');
+  const date = days[pickedDate] ? pickedDate : dates[0];
 
-     if (!weatherData || !weatherData.forecast) return;
-
-    setDate(targetDate);
-
-    const filterArr = weatherData.forecast.filter((ele) => {
-      return ele.dt_txt.slice(0, 10) === targetDate;
-    });
-    // console.log(filterArr.length)
-    setFilteredData({...weatherData, forecast:filterArr});
-  };
-
-  // Initial filter setup on component mount
-  useEffect(() => {
-    handleChange(formattedDate);
-  }, [weatherData]); // Ensure this runs when weatherData changes
+  if (!dates.length) return <p>No weather data available.</p>;
 
   return (
     <div className='dyn4cast-container'>
       <div className="dropdown-container">
-        <label htmlFor='Select-date' className="dropdown-label">Select Date</label>
+        <label htmlFor='forecast-date' className="dropdown-label">Select Date</label>
         <input
           type="date"
-          id="city-dropdown" 
-          className="city-dropdown" 
-          onChange={(e) => {
-            handleChange(e.target.value);
-          }}
+          id="forecast-date"
+          className="city-dropdown"
+          min={dates[0]}
+          max={dates[dates.length - 1]}
           value={date}
+          onChange={(e) => setPickedDate(e.target.value)}
         />
       </div>
-      {filteredData.forecast.length > 0 ? (
-        <>
-          <WeatherDisplay weatherData={filteredData} />
-        </>
+      {days[date] ? (
+        <WeatherDisplay weatherData={weatherData} date={date} items={days[date]} />
       ) : (
         <p>No weather data available for the selected date.</p>
       )}
@@ -59,5 +43,3 @@ const DynamicForcasting = ({ weatherData }) => {
 };
 
 export default DynamicForcasting;
-
-

@@ -1,14 +1,15 @@
 import React from 'react';
-import './LocationDropdown.css'; 
+import './LocationDropdown.css';
 
 const cities = ["Ho Chi Minh", "Singapore", "Kuala Lumpur", "Tokyo", "Athens"];
 
 const LocationDropdown = ({ selectedCity, setSelectedCity }) => (
     <div className="dropdown-container">
-        <label htmlFor="city-dropdown" className="dropdown-label">Select City:</label>
-        <select 
-            className="city-dropdown" 
-            value={selectedCity} 
+        <label htmlFor="city-select" className="dropdown-label">Select City:</label>
+        <select
+            id="city-select"
+            className="city-dropdown"
+            value={selectedCity}
             onChange={(e) => setSelectedCity(e.target.value)}
         >
             {cities.map((city) => (
@@ -21,4 +22,3 @@ const LocationDropdown = ({ selectedCity, setSelectedCity }) => (
 );
 
 export default LocationDropdown;
-
