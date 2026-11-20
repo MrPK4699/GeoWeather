@@ -1,13 +1,222 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Outfit", "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply min-h-svh bg-slate-900 font-sans text-white antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid #fde68a;
+    outline-offset: 3px;
+    border-radius: 8px;
+  }
+  ::selection {
+    background: rgb(253 230 138 / 0.4);
+  }
+}
+
+/* Glass card: a faint white tint you can see the animated background through.
+   Keep the blur tiny: the stars are 2-3px dots and any real blur makes them disappear. */
+@utility glass {
+  background: linear-gradient(145deg, rgb(255 255 255 / 0.09), rgb(255 255 255 / 0.03));
+  border: 1px solid rgb(255 255 255 / 0.2);
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
+  border-radius: 1.5rem;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.18),
+    0 8px 32px -12px rgb(0 0 0 / 0.35);
+}
+
+/* Thin, unobtrusive horizontal scrollbar (hourly strip) */
+@utility scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(255 255 255 / 0.25) transparent;
+}
+
+/* ───────────── Background scenes ─────────────
+   All scenes are stacked; the active one fades in (smooth change between cities). */
+.scene {
+  position: fixed;
+  inset: 0;
+  overflow: hidden; /* drifting clouds must never widen the page */
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  pointer-events: none;
+}
+.scene.is-active {
+  opacity: 1;
+}
+.scene-clear-day { background: linear-gradient(165deg, #1e3a8a 0%, #2563eb 45%, #0ea5e9 100%); }
+.scene-clear-night { background: linear-gradient(170deg, #020617 0%, #172554 55%, #312e81 100%); }
+.scene-clouds-day { background: linear-gradient(170deg, #1e293b 0%, #475569 55%, #64748b 100%); }
+.scene-clouds-night { background: linear-gradient(170deg, #020617 0%, #1e293b 60%, #334155 100%); }
+.scene-rain { background: linear-gradient(170deg, #0b1120 0%, #1e3a5f 55%, #334155 100%); }
+.scene-thunder { background: linear-gradient(170deg, #030712 0%, #1e1b4b 55%, #3b0764 100%); }
+.scene-snow { background: linear-gradient(170deg, #1e3a5f 0%, #475569 55%, #64748b 100%); }
+.scene-mist { background: linear-gradient(170deg, #1f2937 0%, #4b5563 55%, #6b7280 100%); }
+
+/* Sun glow */
+.sun-glow {
+  position: absolute;
+  top: -12rem;
+  right: -10rem;
+  width: 36rem;
+  height: 36rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgb(253 224 71 / 0.55) 0%, rgb(251 146 60 / 0.18) 40%, transparent 70%);
+  animation: glow 8s ease-in-out infinite;
+}
+@keyframes glow {
+  50% { transform: scale(1.08); opacity: 0.85; }
+}
+
+/* Stars */
+.star {
+  position: absolute;
+  width: var(--size, 2px);
+  height: var(--size, 2px);
+  border-radius: 9999px;
+  background: white;
+  box-shadow: 0 0 6px rgb(255 255 255 / 0.7);
+  animation: twinkle 3s ease-in-out infinite;
+}
+@keyframes twinkle {
+  50% { opacity: 0.2; }
+}
+
+/* Clouds */
+.cloud {
+  position: absolute;
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 0.13);
+  filter: blur(40px);
+  animation: drift linear infinite;
+}
+@keyframes drift {
+  from { transform: translateX(-30vw); }
+  to { transform: translateX(110vw); }
+}
+
+/* Rain */
+.drop {
+  position: absolute;
+  top: -10%;
+  width: 1.5px;
+  height: 70px;
+  background: linear-gradient(to bottom, transparent, rgb(186 230 253 / 0.55));
+  animation: fall linear infinite;
+}
+@keyframes fall {
+  to { transform: translateY(120vh) translateX(-8vh); }
+}
+
+/* Snow */
+.flake {
+  position: absolute;
+  top: -5%;
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 0.85);
+  animation: snow linear infinite;
+}
+@keyframes snow {
+  25% { transform: translate(15px, 30vh); }
+  50% { transform: translate(-10px, 60vh); }
+  75% { transform: translate(12px, 90vh); }
+  to { transform: translate(0, 115vh); }
+}
+
+/* Lightning */
+.lightning {
+  position: absolute;
+  inset: 0;
+  background: rgb(224 231 255 / 0.9);
+  opacity: 0;
+  animation: flash 7s infinite;
+}
+@keyframes flash {
+  0%, 89%, 92%, 95%, 100% { opacity: 0; }
+  90%, 94% { opacity: 0.35; }
+}
+
+/* Mist */
+.mist {
+  position: absolute;
+  left: -50%;
+  width: 200%;
+  height: 30vh;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.12), transparent);
+  filter: blur(30px);
+  animation: mist 28s ease-in-out infinite alternate;
+}
+@keyframes mist {
+  to { transform: translateX(20%); }
+}
+
+/* Weather icon motion */
+.wi-spin { animation: spin-slow 24s linear infinite; }
+.wi-float { animation: float 4s ease-in-out infinite; }
+.wi-drift { animation: sway 6s ease-in-out infinite; }
+.wi-flash { animation: icon-flash 3s ease-in-out infinite; }
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+@keyframes float { 50% { transform: translateY(-6px); } }
+@keyframes sway { 50% { transform: translateX(6px); } }
+@keyframes icon-flash { 0%, 100% { opacity: 1; } 50% { opacity: 0.65; } }
+
+/* Map marker: pulsing dot */
+.pulse-marker {
+  position: relative;
+  width: 18px;
+  height: 18px;
+}
+.pulse-marker::before,
+.pulse-marker::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: #fbbf24;
+}
+.pulse-marker::after {
+  border: 3px solid white;
+}
+.pulse-marker::before {
+  animation: ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes ping {
+  75%, 100% { transform: scale(2.6); opacity: 0; }
+}
+
+/* Dark map: invert the light OSM tiles (only the base layer; the rain overlay keeps its colours) */
+.map-tiles-dark {
+  filter: invert(1) hue-rotate(180deg) brightness(0.9) contrast(0.9) saturate(0.5);
+}
+
+/* Leaflet controls on the dark map */
+.leaflet-container {
+  font-family: inherit;
+  background: #0f172a;
+}
+.leaflet-control-attribution {
+  background: rgb(15 23 42 / 0.7) !important;
+  color: #cbd5e1 !important;
+}
+.leaflet-control-attribution a {
+  color: #fde68a !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
 }
